@@ -68,6 +68,7 @@ def receive():
         ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Build payload matching frontend expectations
+        cnt = request.args.get("cnt", "0")
         payload = {
             "gps": {
                 "lat": float(lat) if lat and lat != "0" else None,
@@ -84,7 +85,8 @@ def receive():
             },
             "accident":  accident,
             "timestamp": ts,
-            "status":    "accident" if accident else "safe"
+            "status":    "accident" if accident else "safe",
+            "counter":   int(cnt)   # ESP32 send counter — frontend detects new data
         }
 
         # Write live data to Firebase /live (overwrites)
