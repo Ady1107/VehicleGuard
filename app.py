@@ -21,7 +21,7 @@ CORS(app)
 FIREBASE_URL = "https://vehicleguard-847e6-default-rtdb.firebaseio.com"
 
 # ── Thresholds ──
-ACCIDENT_THRESHOLD = 1.5   # g-force — matches ESP32
+ACCIDENT_THRESHOLD = 1.2   # g-force — matches ESP32
 FREEFALL_THRESHOLD = 0.2   # g-force
 
 # ── Firebase helpers ──
