@@ -1,0 +1,59 @@
+services:
+  - type: web
+    name: vehicleguard-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+```
+
+### Upload to GitHub:
+1. Open your repository on github.com
+2. Click **Add file → Upload files**
+3. Drag all 3 files (`app.py`, `requirements.txt`, `render.yaml`)
+4. Click **Commit changes**
+
+---
+
+## PART 3 — Deploy on Render
+
+### Step 1 — Create Render Account
+1. Go to **render.com**
+2. Click **Get Started for Free**
+3. Click **Sign up with GitHub** ← easiest, links both accounts
+
+### Step 2 — Create New Web Service
+1. Click **New +** → **Web Service**
+2. Click **Connect GitHub**
+3. Select your `vehicleguard-backend` repository
+4. Click **Connect**
+
+### Step 3 — Configure Service
+Fill these settings:
+```
+Name            : vehicleguard-backend
+Region          : Singapore (closest to India)
+Branch          : main
+Runtime         : Python 3
+Build Command   : pip install -r requirements.txt
+Start Command   : gunicorn app:app
+Instance Type   : Free
+```
+5. Click **Create Web Service**
+
+### Step 4 — Wait for Deploy
+Render will show logs like:
+```
+==> Building...
+==> pip install -r requirements.txt
+==> Starting service...
+==> Your service is live at https://vehicleguard-backend.onrender.com
+```
+Takes about **2-3 minutes**
+
+---
+
+## PART 4 — Update ESP32 Code
+
+Once deployed, Render gives you a URL like:
+```
+https://vehicleguard-backend.onrender.com
